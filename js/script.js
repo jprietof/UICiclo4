@@ -28,7 +28,7 @@ function validarLogin(form){
         return false;
     }
 }
-jQuery(document).on("submit", ".form", function(event){
+jQuery(document).on("submit", "#login", function(event){
     event.preventDefault();
     let user = $($("#login")[0].usuario).val();
     let pass =$($("#login")[0].contrasena).val();
@@ -54,3 +54,66 @@ jQuery(document).on("submit", ".form", function(event){
         }
     })
 })
+
+/*---------------------------------------
+            Registro
+----------------------------------------*/
+function validarNewUser(form){
+    limpiarErrores();
+    //validar nombre
+    if(form.nombre.value.trim().length==0){
+        document.getElementById('errorNombre').innerText="* Campo Obligatorio";
+        form.nombre.focus();
+        return false
+    }else if(patronNumeros.test(form.nombre.value)){
+        document.getElementById("errorNombre").innerText="* El nombre no puede contener números"
+        return false;
+    }
+
+    //validar email
+    if(!correo.test(form.emailN.value)){
+        document.getElementById('myEmail').innerText="* Email no valido";
+        form.emailN.focus;
+        return false;
+    }else if(form.emailN.value.trim().length==0){
+        document.getElementById('myEmail').innerText="* Campo obligatorio";
+        form.emailN.focus;
+        return false;
+    }
+    $("#registro").on("blur", "#emailN", function () {
+        console.log("Ingreso")
+        console.log($(this).val())
+        $.ajax({
+            url:"http://129.151.114.181:8080/api/user/"+$(this).val(),
+            type: "GET",
+            datatype:"JSON",
+            success:function(respuesta){
+                console.log(respuesta);
+                if(respuesta){
+                    document.getElementById('myEmail').innerText="* El Email ya esta registrado";
+                    form.email.focus;
+                    return false;
+                }
+            }
+        })
+    })
+
+    //validar password
+    if(form.newpass.value.trim().length == 0){
+        document.getElementById('mypass').innerText='* Campo obligatorio';
+        form.newpass.focus();
+        return false;
+    }else if(form.newpass.value.trim().length < 7){
+        document.getElementById('newpass').innerText='* Clave minimo 7 caracteres';
+        formulario.contrasena.focus();
+        return false;
+
+    }
+    //confirmar password
+    if(form.newpass.value != form.chekpass.value){
+        document.getElementById("confirmar").innerText="* La contraseña no coincide";
+        form.confirmar.focus();
+        return false;
+    }
+
+}
