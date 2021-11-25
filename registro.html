@@ -26,7 +26,7 @@
 				 	<input type="text" id="nombre" name="nombre" required>
 
 				 	<label for="emailN">E-mail <span class="tooltip" id="myEmail"></span></label>
-				 	<input type="text" id="emailN" name="emailN" required>
+				 	<input type="email" id="emailN" name="emailN" required>
 
 				 	<label for="newpass">Contraseña <span class="tooltip" id="mypass"></span></label>
 				 	<input type="password" id="newpass" name="newpass" required>
@@ -34,6 +34,8 @@
                      <label for="chekpass">Confirmar Contraseña <span class="tooltip" id="confirmar"></span></label>
 				 	<input type="password" id="chekpass" name="chekpass" required>
 			 	</div>
+                 <div class="ok"></div>
+                 <div class="error"></div>
 		 </fieldset>
          <button type="submit" class="btn" onclick="return validarNewUser(this.form)">Registrar</button>
              <p>¿Ya tienes cuenta? <a id="crear" href="index.html">Inicia sesión aquí</a></p>

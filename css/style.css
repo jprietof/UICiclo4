@@ -102,3 +102,12 @@ margin-top: 15px;
 	width: 0 auto;
 	margin-bottom: 10px;
 }
+.ok span{
+	display: block;
+	background: green;
+	color: #fff;
+	text-align: center;
+	height: 20px;
+	width: 0 auto;
+	margin-bottom: 10px;
+}

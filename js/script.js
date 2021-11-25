@@ -104,16 +104,40 @@ function validarNewUser(form){
         form.newpass.focus();
         return false;
     }else if(form.newpass.value.trim().length < 7){
-        document.getElementById('newpass').innerText='* Clave minimo 7 caracteres';
-        formulario.contrasena.focus();
+        document.getElementById('mypass').innerText='* Clave minimo 7 caracteres';
+        form.newpass.focus();
         return false;
 
     }
     //confirmar password
     if(form.newpass.value != form.chekpass.value){
         document.getElementById("confirmar").innerText="* La contraseña no coincide";
-        form.confirmar.focus();
+        form.chekpass.focus();
         return false;
     }
+    jQuery(document).on("submit", "#registro", function(event){
+        event.preventDefault();
+        let info={
+            email: $($("#registro")[0].emailN).val(),
+            password: $($("#registro")[0].newpass).val(),
+            name: $($("#registro")[0].nombre).val()
+        }
+        data = JSON.stringify(info);
+        console.log(data);
+        $.ajax({
+            url:"http://129.151.114.181:8080/api/user/new",
+            type:"POST",
+            datatype:"JSON",
+            contentType:"application/JSON; charset=utf-8",
+            data:data,
+            success: function(datos){
+                console.log(datos);
+                $(".ok").html("<span>Se creo la cuenta correctamente</span>").slideDown('slow');
+                setTimeout(function(){
+                    $(".ok").slideUp("slow");
+                },3000)
+            }
+        })
 
+    })
 }
