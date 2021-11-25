@@ -93,3 +93,12 @@ margin-top: 15px;
 	font-weight: 300;
 	color: #ff1400;
 }
+.error span{
+	display: block;
+	background: #ff1400;
+	color: #fff;
+	text-align: center;
+	height: 20px;
+	width: 0 auto;
+	margin-bottom: 10px;
+}

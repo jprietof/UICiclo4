@@ -28,3 +28,29 @@ function validarLogin(form){
         return false;
     }
 }
+jQuery(document).on("submit", ".form", function(event){
+    event.preventDefault();
+    let user = $($("#login")[0].usuario).val();
+    let pass =$($("#login")[0].contrasena).val();
+    console.log(user);
+    console.log(pass);
+    $.ajax({
+        url:"http://129.151.114.181:8080/api/user/"+user+"/"+pass,
+        type:"GET",
+        datatype:"JSON",
+        success:function(respuesta){
+            console.log(respuesta);
+            if(!respuesta.error){
+                if(respuesta.name!="NO DEFINIDO"){
+                    console.log("entro")
+                    location.href='privado.html';
+                }else{
+                    $(".error").html("<span>No exite el usuario</span>").slideDown('slow');
+                    setTimeout(function(){
+                        $(".error").slideUp("slow");
+                    },3000)
+                }
+            }
+        }
+    })
+})

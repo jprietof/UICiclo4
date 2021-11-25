@@ -17,7 +17,7 @@
 				</div>
 			</header>
 
-			<form action="#" class="form">
+			<form action="#" class="form" id="login">
 				<fieldset>
 					<div class="col">
 						<label for="usuario">Email <span class="tooltip" id="errorUser"></span></label>
@@ -25,8 +25,8 @@
 
 						<label for="contrasena">Contraseña <span class="tooltip" id="errorPass"></span></label>
 						<input type="password" id="contrasena" name="contrasena" required>
-						
 					</div>
+					<div class="error"></div>
 				</fieldset>
 				<button type="submit" class="btn" onclick="return validarLogin(this.form)">Ingresar</button>
 				<p>¿No tienes cuenta? <a id="crear" href="registro.html">Crea tu cuenta aquí</a></p>
